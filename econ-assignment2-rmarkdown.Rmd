@@ -100,4 +100,83 @@ gas_graph
 
 ```
 
-Testing out the collab
+```{r}
+
+#defining the aggregate demand curve
+
+aggdemand <- function(x) {
+  -0.00006626828808*x + 22.7063092
+}
+
+#defining the supply curve
+
+supply <- function(x) {
+  0.00001871318504*x 
+}
+
+#defining marginal environmental cost
+
+MEC <- function(x) {
+  2
+}
+
+#defining low income demand
+
+ lowincome <- function(x) {
+   -0.0001355*x +21.991
+ }
+ 
+ highincome <- function(x) {
+   -0.0001297*x + 23.391
+ }
+ 
+
+```
+
+
+```{r}
+
+#attempting to grapgh the demand, supply, and MEC curves
+
+gasplot <- ggplot(data.frame(x = c(0,400000)), aes(x = x))+
+  stat_function(fun = aggdemand, colour = "red")+
+  stat_function(fun = supply, colour = "blue")+
+  stat_function(fun = MEC)+
+  stat_function(fun = lowincome, colour = "green")+
+  stat_function(fun = highincome)+
+  ylim(0,30)
+
+
+gasplot
+
+```
+
+
+```{r}
+
+#Calculations with the $0.50 tax
+
+#define new supply function with tax added
+
+supply_tax <- function(x) {
+  0.5000187132*x
+}  
+
+```
+
+```{r}
+#new graph with new supply curve
+
+gasplot_tax <- ggplot(data.frame(x = c(0,400000)), aes(x = x))+
+  stat_function(fun = aggdemand, colour = "red")+
+  stat_function(fun = supply_tax, colour = "blue")+
+  stat_function(fun = MEC)+
+  stat_function(fun = lowincome, colour = "green")+
+  stat_function(fun = highincome)+
+  ylim(0,30)
+
+
+gasplot_tax
+
+```
+
