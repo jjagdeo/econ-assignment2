@@ -136,7 +136,7 @@ MEC <- function(x) {
 
 ```{r}
 
-#attempting to grapgh the demand, supply, and MEC curves
+#attempting to graph the demand, supply, and MEC curves
 
 gasplot <- ggplot(data.frame(x = c(0,400000)), aes(x = x))+
   stat_function(fun = aggdemand, colour = "red")+
@@ -159,7 +159,7 @@ gasplot
 #define new supply function with tax added
 
 supply_tax <- function(x) {
-  0.5000187132*x
+  0.00001871318504*x +0.50
 }  
 
 ```
@@ -167,7 +167,7 @@ supply_tax <- function(x) {
 ```{r}
 #new graph with new supply curve
 
-gasplot_tax <- ggplot(data.frame(x = c(0,400000)), aes(x = x))+
+gasplot_tax <- ggplot(data.frame(x = c(0,400000)), aes(x = x)) +
   stat_function(fun = aggdemand, colour = "red")+
   stat_function(fun = supply_tax, colour = "blue")+
   stat_function(fun = MEC)+
