@@ -144,6 +144,7 @@ gasplot <- ggplot(data.frame(x = c(0,400000)), aes(x = x))+
   stat_function(fun = MEC)+
   stat_function(fun = lowincome, colour = "green")+
   stat_function(fun = highincome)+
+  theme_classic()+
   ylim(0,30)
 
 
@@ -172,11 +173,51 @@ gasplot_tax <- ggplot(data.frame(x = c(0,400000)), aes(x = x)) +
   stat_function(fun = supply_tax, colour = "blue")+
   stat_function(fun = MEC)+
   stat_function(fun = lowincome, colour = "green")+
-  stat_function(fun = highincome)+
-  ylim(0,30)
+  stat_function(fun = highincome, colour = "purple")+
+  ylim(0,30)+
+  theme_classic()+
+  labs(x = "Quantity of Gasoline Consumed (gallons)", y = "Price")
+  
 
 
 gasplot_tax
+
+```
+
+```{r}
+# defining new demnd curves with intercepts halfed for #5 
+
+lowincome_half <- function(x) {
+   -0.0001355*x + 10.9955
+ }
+
+highincome_half <-function(x) {
+  -0.0001297*x + 11.6955
+}
+
+
+aggdemand_half <-function(x) {
+   -0.00006626828808*x + 11.35410113
+}
+```
+
+
+```{r}
+#5. New demand curves with electric car alternative
+
+gasplot_EC <- ggplot(data.frame(x = c(0,400000)), aes(x = x)) +
+  stat_function(fun = aggdemand_half, colour = "red")+
+  stat_function(fun = supply_tax, colour = "blue")+
+  stat_function(fun = MEC)+
+  stat_function(fun = lowincome_half, colour = "green")+
+  stat_function(fun = highincome_half, colour = "purple")+
+  ylim(0,20)+
+  theme_classic()+
+  labs(x = "Quantity of Gasoline Consumed (gallons)", y = "Price")
+  
+
+
+gasplot_EC
 
 ```
 
